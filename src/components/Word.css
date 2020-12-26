@@ -1,0 +1,44 @@
+.word-container {
+    display: block;
+    box-sizing: border-box;
+    width: 300px;
+    padding: 5px;
+    border: 0.1px solid blueviolet;
+    text-align: center;
+    align-items: center;
+    box-shadow: 1px 1px 10px #e0d2b5;
+    border-radius: 1px;
+}
+
+.word-text {
+    font-size: 30px;
+    justify-content: center;
+    text-align: center;
+}
+
+.word-text-error {
+    background-color: firebrick;
+}
+
+.word-text-normal {
+    background-color: lawngreen;
+}
+
+.word-text-animation {
+    animation: enable 0.3s linear;
+}
+
+@keyframes enable {
+    0% {
+        transform: scale(1.2);
+    }
+
+    60% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1.3);
+    }
+
+}

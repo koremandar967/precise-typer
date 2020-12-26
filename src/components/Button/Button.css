@@ -1,0 +1,32 @@
+.buttonInput {
+    background-color: #fffb1d;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #966909;
+    color: #966909;
+    font-family: inherit;
+    font-size: 1.2em;
+    padding: 13px 10px;
+    margin-right: 5px;
+    /* box-shadow: 2px 2px 2px #966909; */
+}
+
+.buttonInput:hover {
+    background-color: #a0db41;
+    border: 1px solid #966909;
+    color: #966909;
+    box-shadow: 2px 2px 2px #966909;
+}
+
+.ActiveButtonInput {
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #966909;
+    color: #966909;
+    font-family: inherit;
+    font-size: 1.2em;
+    margin-right: 5px;
+    padding: 13px 10px;
+    box-shadow: 1px 1px 4px 3px #966909;
+}

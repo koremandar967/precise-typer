@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 export const Timer = (props) => {
-  const [timer, setTimer] = useState(null);
-  const [minTimer, setMinTimer] = useState(null);
+  const [timer, setTimer] = useState(0);
+  const [minTimer, setMinTimer] = useState(0);
 
   const id = useRef(null);
 
@@ -12,16 +12,13 @@ export const Timer = (props) => {
 
   useEffect(() => {
     setMinTimer(props.time);
+
+    return () => {
+          clear();
+        }
+
   }, [props.time]);
 
-  // useEffect(() => {
-  //   if (props.isStart) handleCountdownTimer();
-  // }, [props.isStart]);
-
-  useEffect(() => {
-    handleSetInterval();
-    return () => clear();
-  }, []);
 
   const handleSetInterval = () => {
     id.current = window.setInterval(() => {
@@ -37,42 +34,40 @@ export const Timer = (props) => {
     }, 1000);
   };
 
-  const handleCountdownTimer = () => {
-    if (Number(timer) === 0) {
-      clear();
-      if (Number(minTimer) > 0) {
-        let minutes = Number(minTimer) - 1;
-        setMinTimer(minutes);
-        setTimer(60);
-        handleSetInterval();
-      }
 
-      if (minTimer === 0 && timer === 0) {
-        props.handleTimesUp();
+  const handleTimesUpProp =
+    useCallback(
+      () => {
+        if (minTimer === 0 && parseInt(timer) === 0 && props.isStart) {
+          props.handleTimesUp();
+        }
       }
-    }
-  };
+      , [minTimer, timer, props]);
 
   useEffect(() => {
-    if (Number(timer) === 0) {
-      clear();
-      if (Number(minTimer) > 0) {
-        let minutes = Number(minTimer) - 1;
-        setMinTimer(minutes);
-        setTimer(60);
-        handleSetInterval();
-      }
-    }
-  }, [timer, minTimer]);
+    if (props.isStart) {
 
-  const handleTimesUpProp = () => {
-    if (minTimer === 0 && timer === 0) props.handleTimesUp();
-  };
+      if (Number(timer) === 0) {
+        if (Number(minTimer) > 0) {
+          let minutes = Number(minTimer) - 1;
+          clear();
+          setMinTimer(minutes);
+          setTimer(59);
+          handleSetInterval();
+        }
+      }
+      handleTimesUpProp();
+
+    }
+
+  }, [timer, minTimer, props.isStart, handleTimesUpProp]);
+
+
 
   return (
     <div>
       Time left : {minTimer < 10 ? "0" + minTimer : minTimer} :{" "}
-      {timer === 60 ? "00" : timer}{" "}
+      {timer === 60 || timer === 0 ? "00" : timer}{" "}
     </div>
   );
 };

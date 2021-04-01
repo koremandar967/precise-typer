@@ -3,12 +3,14 @@ import { Link, Route, Switch, Redirect, useHistory } from "react-router-dom";
 import "./Home.css";
 import Typer from "../../containers/Typer";
 import { Button } from "../Button/Button";
-export const Home = () => {
+import { withRouter } from "react-router-dom";
+
+const Home = () => {
   const ONE_MINUTE_BUTTON = "oneMinute";
   const TWO_MINUTE_BUTTON = "twoMinute";
   const THREE_MINUTE_BUTTON = "threeMinute";
 
-  const [time, setTimer] = useState(0);
+  const [time, setTimer] = useState(1);
 
   const [activeMinuteButtons, setActiveMinuteButtons] = useState({
     oneMinuteButton: true,
@@ -29,7 +31,7 @@ export const Home = () => {
       threeMinuteButton: true,
     };
 
-    let time = 0;
+    let time = 1;
 
     if (e.target.name === ONE_MINUTE_BUTTON) {
       activeButtons.oneMinuteButton = true;
@@ -56,36 +58,41 @@ export const Home = () => {
   };
 
   return (
-    <div className="container">
+    <div className="main-container">
       <p className="header-text">Welcome to precise typer</p>
-      <div className="buttonContainer">
-        <Button
-          name={ONE_MINUTE_BUTTON}
-          isActive={activeMinuteButtons.oneMinuteButton}
-          handleMinutes={handleMinuteButtons}
-        >
-          1 minute
+      <div className="container">
+        <div className="sub-container">
+
+          <div className="buttonContainer">
+            <Button
+              name={ONE_MINUTE_BUTTON}
+              isActive={activeMinuteButtons.oneMinuteButton}
+              handleMinutes={handleMinuteButtons}
+            >
+              1 minute
         </Button>
-        <Button
-          name={TWO_MINUTE_BUTTON}
-          isActive={activeMinuteButtons.twoMinuteButton}
-          handleMinutes={handleMinuteButtons}
-        >
-          2 minute
+            <Button
+              name={TWO_MINUTE_BUTTON}
+              isActive={activeMinuteButtons.twoMinuteButton}
+              handleMinutes={handleMinuteButtons}
+            >
+              2 minute
         </Button>
-        <Button
-          name={THREE_MINUTE_BUTTON}
-          isActive={activeMinuteButtons.threeMinuteButton}
-          handleMinutes={handleMinuteButtons}
-        >
-          3 minute
+            <Button
+              name={THREE_MINUTE_BUTTON}
+              isActive={activeMinuteButtons.threeMinuteButton}
+              handleMinutes={handleMinuteButtons}
+            >
+              3 minute
         </Button>
-      </div>
-      <div>
-        <button className="startButton" onClick={handleClick}>
-          START NOW
+          </div>
+            <button className="startButton" onClick={handleClick}>
+              START NOW
         </button>
+        </div>
       </div>
     </div>
   );
 };
+
+export default withRouter(Home);

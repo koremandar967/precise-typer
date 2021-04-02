@@ -1,5 +1,6 @@
 import React from 'react'
 
+// temp 2
 const Result = (props) => {
     
     return (

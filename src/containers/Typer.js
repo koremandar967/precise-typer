@@ -101,6 +101,7 @@ class Typer extends Component {
       const currentCharacterCount = this.state.correctCharacterCount;
       const totalCharacterCount = currentCharacterCount + this.state.currentWord.length;
 
+      //temp 1
       const wordCount = this.state.correctWordCount + 1;
       const temp = 23.6;
       console.log(Math.floor(temp));

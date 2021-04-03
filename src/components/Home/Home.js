@@ -86,9 +86,11 @@ const Home = () => {
               3 minute
         </Button>
           </div>
-            <button className="startButton" onClick={handleClick}>
+          <button className="startButton" onClick={handleClick}>
+              <span className="front">
               START NOW
-        </button>
+              </span>
+          </button>
         </div>
       </div>
     </div>
